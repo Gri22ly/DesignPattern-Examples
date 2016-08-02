@@ -2,12 +2,13 @@ package com.ff.multiThread.test;
 
 import com.ff.multiThread.MyThread;
 import com.ff.multiThread.MyThread2;
+import com.ff.multiThread.MyThreadPrinter;
 
 public class Tester {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		
-		tester4();
+		tester5();
 		
 	}
 	
@@ -49,7 +50,7 @@ public class Tester {
 		 * different outcome of the result 
 		 */
 		
-		System.out.println(Thread.currentThread().getName()+"主线程运行开始!");
+		System.out.println(Thread.currentThread().getName()+"Main Thread starts!");
 		MyThread mTh1=new MyThread("A");
 		MyThread mTh2=new MyThread("B");
 		mTh1.start();
@@ -67,8 +68,24 @@ public class Tester {
 //			e.printStackTrace();
 //		}
 		
-		System.out.println(Thread.currentThread().getName()+ "主线程运行结束!");
+		System.out.println(Thread.currentThread().getName()+ "Main Thread ends!");
 	}
 	
+	public static final void tester5() throws InterruptedException {
+        Object a = new Object();   
+        Object b = new Object();   
+        Object c = new Object();   
+        MyThreadPrinter pa = new MyThreadPrinter("A", c, a);   
+        MyThreadPrinter pb = new MyThreadPrinter("B", a, b);   
+        MyThreadPrinter pc = new MyThreadPrinter("C", b, c);   
+           
+           
+        new Thread(pa).start();
+        Thread.sleep(100);  //ensure A B C in order
+        new Thread(pb).start();
+        Thread.sleep(100);  
+        new Thread(pc).start();   
+        Thread.sleep(100);  
+	}
 	
 }
