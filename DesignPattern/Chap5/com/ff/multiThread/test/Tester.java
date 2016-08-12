@@ -81,11 +81,12 @@ public class Tester {
            
            
         new Thread(pa).start();
-        Thread.sleep(100);  //ensure A B C in order
+        Thread.sleep(1);  //ensure A B C in order
         new Thread(pb).start();
-        Thread.sleep(100);  
+        Thread.sleep(1);  
         new Thread(pc).start();   
-        Thread.sleep(100);  
+        Thread.sleep(1);  
+        
 	}
 	
 }
